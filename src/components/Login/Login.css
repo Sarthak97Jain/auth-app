@@ -77,3 +77,20 @@
     color: lightgray;
     font-size: smaller;
   }
+
+.login-form-input-fields{
+    display: flex;
+    justify-content: space-evenly;
+}
+.login-form-btn{
+  display: flex;
+  justify-content: end;
+  width:79%
+}
+.login-page-heading{
+  background-color: #606468;
+  border-radius: 5px;
+  width: 600px;
+  display: flex;
+  justify-content: center;
+}

@@ -11,12 +11,17 @@ const Dashboard = () => {
             });
             sessionStorage.setItem("showLoginBanner",false)
         }
+        const uname = sessionStorage.getItem("username");
+        if(uname === null || uname ===''){
+            NavigateTo('/')
+        }
     },[])
 
     const NavigateTo = useNavigate();
 
     const handleLogout = () => {
         sessionStorage.clear();
+        sessionStorage.setItem("LogoutFlag",true);
         NavigateTo('/')
     }
 

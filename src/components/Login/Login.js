@@ -5,31 +5,29 @@ import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 import toast ,{Toaster} from 'react-hot-toast'
 
-const Login = (props) => {
+const Login = () => {
 
   const NavigateTo = useNavigate();
-    // useEffect(()=>{
-    //     const uname = sessionStorage.getItem("username");
-    //     if(sessionStorage.getItem("registerFlag")==="true"){
-    //       toast.success("Registration Complete! Please Login to continue.",{
-    //         position: 'top-right'
-    //       })
-    //       sessionStorage.setItem("registerFlag",false);
-    //     }
-    //     if(uname === null || uname===''){
-    //         NavigateTo('/');
-    //         if(sessionStorage.getItem("showLogoutBanner")==="true"){
-    //           toast.error("Logged Out!",{
-    //             position: 'top-right'
-    //           })
-    //           sessionStorage.clear();
-    //         }
-    //     }
-    //     else{
-    //       NavigateTo('/dashboard');
-    //     }
-    // },[])
 
+    useEffect(()=>{
+        if(sessionStorage.getItem("LogoutFlag") === "true"){
+          toast.success("Logged out!",{
+            position:'top-right'
+          })
+          sessionStorage.clear();
+        }
+        const uname = sessionStorage.getItem("username");
+        if(uname === null || uname===''){
+          if(sessionStorage.getItem("showLogoutBanner")==="true"){
+            toast.error("Logged Out!",{
+              position: 'top-right'
+            })
+            sessionStorage.clear();
+          }}
+          else{
+            NavigateTo('/dashboard');
+          }
+    },[])
 
   const fetchData = () => fetch('http://localhost:3000/loginUsers')
   .then(response => response.json())
@@ -80,35 +78,39 @@ const Login = (props) => {
     <>
     <div className="App">
       <div className='parent-container'>
-        <div style={{display:'flex', justifyContent:'center'}}>
-          <div style={{width:'50%'}}>
-            <header>
+        <div style={{display:'flex', justifyContent:'center' , marginTop:'2rem'}}>
+          <div className='login-page-heading'>
               <h3 data-testid='login-comp' >Login with your username and password.</h3>
-            </header>
           </div>
         </div>
         <div className='login-form'>
           <form onSubmit={handleLogin}>
-            <div className='form-field'>
-              <div className='label-conatiner'>
-                <span className='input-name check'>Username</span>
+            <div style={{width:'400px'}}>
+              <div className='login-form-input-fields'>
+                <div className='form-field'>
+                  <div className='label-conatiner'>
+                    <span className='input-name check'>Username : </span>
+                  </div>
+                  <input type="text" className='input-field' placeholder="username" id='uname'></input>
+                </div>
               </div>
-              <input type="text" className='input-field' placeholder="username" id='uname'></input>
-            </div>
-            <div className='form-field'>
-              <div className='label-conatiner'>
-                <span className='input-name check'>Password</span>
+              <div className='login-form-input-fields'>
+                <div className='form-field'>
+                  <div className='label-conatiner'>
+                    <span className='input-name check'>Password  :</span>
+                  </div>
+                  <input type="password" className='input-field' placeholder='*********' id='pwd'></input>
+                </div>
               </div>
-              <input type="password" className='input-field' placeholder='*********' id='pwd'></input>
-            </div>
-            <div className='form-field'>
-              <input data-testid='navigate' type="submit" value='Login' ></input>
+              <div className='form-field login-form-btn'>
+                <input data-testid='navigate' type="submit" value='Login' ></input>
+              </div>
             </div>
           </form>
         </div>
         <div className='footer-text'>
             <Link to='/register' className='footer-align register'>Register</Link>
-            <Link to='forget' className='footer-align forgot'>forgot password?</Link>
+            <Link to='/forget' className='footer-align forgot'>forgot password?</Link>
           </div>
         </div>
         {/* <div>
