@@ -2,6 +2,7 @@ import React from 'react'
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import toast, {Toaster} from 'react-hot-toast';
+import './Register.css'
 
 const Register = () => {
 
@@ -51,24 +52,24 @@ const Register = () => {
 
   return (
     <>
-      <form onSubmit={handleRegister}>
-          <div>
+      <form onSubmit={handleRegister} className='register-form'>
+          <div className='register-div'>
             <div className='check'>
               Register User
             </div>
-            <div>
+            <div className='register-fields'>
               <span className='check'>Username :</span>
               <input type='text' />
             </div>
-            <div>
+            <div className='register-fields'>
               <span className='check'>Password :</span>
               <input type='password' />
             </div>
-            <div>
+            <div className='register-fields'>
               <span className='check'>Confirm Password :</span>
               <input type='password' />
             </div>
-            <button type='submit'>Register</button>
+            <button type='submit' className='create-button'>Register</button>
         </div>
       </form>
       <Toaster/>
