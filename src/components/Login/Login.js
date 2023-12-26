@@ -17,6 +17,12 @@ const Login = () => {
           sessionStorage.clear();
         }
         const uname = sessionStorage.getItem("username");
+        if(sessionStorage.getItem("registerFlag") === "true"){
+          toast.success("User sucessfully registered, Login to continue.",{
+            position:'top-right'
+          });
+          sessionStorage.clear();
+        }
         if(uname === null || uname===''){
           if(sessionStorage.getItem("showLogoutBanner")==="true"){
             toast.error("Logged Out!",{
